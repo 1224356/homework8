@@ -1,33 +1,27 @@
 ﻿int[] setArrSize()
 {
     int[] RowsCols = new int[2]; 
-    // RowsCols[0] = new Random().Next(1, 25);
-    RowsCols[0] = 3;
-    RowsCols[1] = 2;
-    // RowsCols[1] = 50 / RowsCols[0];
+    RowsCols[0] = new Random().Next(2, 25);
+    RowsCols[1] = new Random().Next(2,50 / RowsCols[0]);
     return RowsCols; 
 }
 
 int findValue(int[,] nums)
 {
     bool flag = false;
-    int elemValue = new Random().Next(0,6);
+    int elemValue = new Random().Next(0,100);
     while (flag == false)
     {
-        Console.WriteLine("--------------------------------------------------------");
-        elemValue = new Random().Next(0,6);
-        flag = false;
-        Console.WriteLine($"elemValue = {elemValue} ");
+        elemValue = new Random().Next(0,100);
+        flag = true;
         for (int i = 0; i < nums.GetLength(0); i++)
         {
             for (int j = 0; j < nums.GetLength(1); j++)
             {
-                if (elemValue != nums[i,j]) flag = flag | true;
+                if (elemValue != nums[i,j]) flag = flag & true;
                 if (elemValue == nums[i,j]) flag = flag & false;
-                Console.WriteLine($"nums[{i},{j}] = {nums[i,j]}, {flag} ");
             }
         }
-        Console.WriteLine($"flag = {flag}");
     }
     return elemValue;
 }
@@ -39,9 +33,7 @@ int[,] createArr(int rows, int cols)
     {
         for (int j = 0; j < cols; j++)
         {
-            Console.WriteLine("++++++++++++++");
             mas[i,j] = findValue(mas);
-            printRandArr(mas);
         }
     }
     return mas;
